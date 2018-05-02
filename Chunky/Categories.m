@@ -19,11 +19,11 @@
 {
     for (id obj in self) {
         if ([obj isEqual:[NSNull null]]) {
-            return true;
+            return YES;
         }
     }
     
-    return false;
+    return NO;
 }
 
 @end

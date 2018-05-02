@@ -23,17 +23,17 @@ typedef void (^TaskCompletion)(NSData * _Nullable data,
     {
         if (!data) {
             NSLog(@"failed");
-            completionHandler(false);
+            completionHandler(NO);
             return;
         }
         
-        if ([data writeToFile:filePath atomically:true]) {
+        if ([data writeToFile:filePath atomically:YES]) {
             NSLog(@"done");
-            completionHandler(true);
+            completionHandler(YES);
             
         } else {
             NSLog(@"Could not write data to file");
-            completionHandler(true);
+            completionHandler(YES);
         }
     };
 }
