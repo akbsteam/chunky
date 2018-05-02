@@ -78,6 +78,7 @@ typedef void (^TaskCompletion)(NSData * _Nullable data,
         
         if (![self hasNull]) {
             [FileWriter recombine:self path:filePath];
+            exit(EXIT_SUCCESS);
         }
     };
 }

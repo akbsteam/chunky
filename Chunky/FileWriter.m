@@ -1,5 +1,5 @@
 #import "FileWriter.h"
-#import "Categories.m"
+#import "Categories.h"
 
 @implementation FileWriter
 
@@ -15,8 +15,6 @@
     }
     
     [outputStream close];
-    
-    exit(EXIT_SUCCESS);
 }
 
 + (NSOutputStream *)openForWriting:(NSString*)path
