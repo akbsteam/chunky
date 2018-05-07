@@ -1,4 +1,5 @@
 #import "NSURLSession+Ranged.h"
+#import "NSMutableURLRequest+Ranged.h"
 #import "Categories.h"
 #import "FileWriter.h"
 
@@ -36,33 +37,6 @@ typedef void (^TaskCompletion)(NSData * _Nullable data,
             completionHandler(YES);
         }
     };
-}
-
-@end
-
-
-@implementation NSMutableURLRequest (Ranged)
-
-+ (instancetype)requestWithURL:(NSURL *)url
-                   forIdentity:(NSUInteger)identity
-                     chunkSize:(NSUInteger)chunkSize
-{
-    NSUInteger fromRange = (identity * chunkSize) + (identity > 0 ? 1 : 0);
-    NSUInteger toRange = (identity + 1) * chunkSize;
-    
-    return [[NSMutableURLRequest alloc] initWithURL:url from:fromRange to:toRange];
-}
-
-- (instancetype)initWithURL:(NSURL *)url
-                       from:(NSUInteger)fromRange
-                         to:(NSUInteger)toRange
-{
-    self = [self initWithURL: url];
-    if (self) {
-        NSString *range = [NSString stringWithFormat:@"bytes=%lu-%lu", fromRange, toRange];
-        [self setValue:range forHTTPHeaderField:@"Range"];
-    }
-    return self;
 }
 
 @end
